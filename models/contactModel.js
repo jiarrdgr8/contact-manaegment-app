@@ -7,16 +7,18 @@ export const contactSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    required: [true, 'Please add the contact name']
+    required: [true, 'Please add the contact name'],
+    index: true
   },
   phone: {
     type: String,
-    required: [true, 'Please add the contact name']
+    required: [true, 'Please add the contact name'],
+    index: true
   }
 }, {
   timestamp: true
 });
 
-const contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model('Contact', contactSchema);
 
-export default contact;
+export default Contact;

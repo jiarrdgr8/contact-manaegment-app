@@ -1,14 +1,23 @@
 import asyncHandler from "express-async-handler";
-import contact from "../models/contactModel.js";
+import Contact from "../models/contactModel.js";
 
 //@desc Get all contacts
 //@route GET /api/contacts
 //@access public
 
 export const getContacts = asyncHandler(async (req, res) => {
-    const contacts = await contact.find()
+    const contacts = await Contact.find()
     res.status(200).json(contacts)
 })
+
+// export const getContacts = asyncHandler(async (req, res) => {
+//     const page = req.query.page || 1;
+//     const perPage = 10;
+//     const contacts = await Contact.find()
+//                                  .skip((page - 1) * perPage)
+//                                  .limit(perPage);
+//     res.status(200).json(contacts);
+// });
 
 //@desc Create a contact
 //@route GET /api/contacts
@@ -21,7 +30,13 @@ export const createContact = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('All fields are mandatory!')
     }
-    res.status(200).json({message: 'Create contact'});
+    const contact = await Contact.create({
+        name,
+        email,
+        phone
+    })
+
+    res.status(200).json('create contact success');
 })
 
 
@@ -30,6 +45,8 @@ export const createContact = asyncHandler(async (req, res) => {
 //@access public
 
 export const getContact = asyncHandler(async (req, res) => {
+
+
     res.status(200).json({message: `Get contact for ${req.params.id}`});
 })
 
