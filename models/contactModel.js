@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const contactSchema = mongoose.Schema({
+const contactSchema = mongoose.Schema({
   name: {
     type: String,
     required: [true, 'Please add the contact name']
@@ -16,9 +16,9 @@ export const contactSchema = mongoose.Schema({
     index: true
   }
 }, {
-  timestamp: true
+  timestamps: true
 });
 
-const Contact = mongoose.model('Contact', contactSchema);
+const Contact = mongoose.model('contacts', contactSchema);
 
 export default Contact;

@@ -5,10 +5,10 @@ import Contact from "../models/contactModel.js";
 //@route GET /api/contacts
 //@access public
 
-export const getContacts = asyncHandler(async (req, res) => {
+export const getContacts = async (req, res) => {
     const contacts = await Contact.find()
     res.status(200).json(contacts)
-})
+}
 
 // export const getContacts = asyncHandler(async (req, res) => {
 //     const page = req.query.page || 1;
@@ -23,7 +23,7 @@ export const getContacts = asyncHandler(async (req, res) => {
 //@route GET /api/contacts
 //@access public
 
-export const createContact = asyncHandler(async (req, res) => {
+export const createContact = async (req, res) => {
     console.log('The request body is: ', req.body);
     const { name, email, phone } = req.body
     if(!name || !email || !phone){
@@ -37,27 +37,27 @@ export const createContact = asyncHandler(async (req, res) => {
     })
 
     res.status(200).json('create contact success');
-})
+}
 
 
 //@desc Get a contact
 //@route GET /api/contacts/:id
 //@access public
 
-export const getContact = asyncHandler(async (req, res) => {
+export const getContact = async (req, res) => {
+    const contact = await Contact.findById(req.params.id)
 
-
-    res.status(200).json({message: `Get contact for ${req.params.id}`});
-})
+    res.status(200).json(contact);
+}
 
 
 //@desc Update a contact
 //@route GET /api/contacts/:id
 //@access public
 
-export const updateContact = asyncHandler(async (req, res) => {
+export const updateContact = async (req, res) => {
     res.status(200).json({message: `Update contact for ${req.params.id}`});
-})
+}
 
 
 //@desc Delete a contact
