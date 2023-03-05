@@ -6,10 +6,10 @@ import Contact from "../models/contactModel.js";
 //@route GET /api/contacts
 //@access public
 
-export const getContacts = async (req, res) => {
+export const getContacts = asyncHandler(async(req, res) => {
     const contacts = await Contact.find()
     res.status(200).json(contacts)
-}
+})
 
 
 //@desc Create a contact
