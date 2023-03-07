@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv"
+
+
+// const ONLINE_CONNECTION_STRING = process.env.ONLINE_CONNECTION_STRING
 
 export const connectDB = async () => {
     try {
-        const connect = await mongoose.connect("mongodb+srv://jiarr:G5PNWSwvwbIXApnD@cluster0.7tujtc3.mongodb.net/mongodb?retryWrites=true&w=majority")
+        const connect = await mongoose.connect(process.env.ONLINE_CONNECTION_STRING)
         
         console.log(
             'Database connected: ',
