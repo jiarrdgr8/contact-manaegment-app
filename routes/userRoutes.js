@@ -1,12 +1,13 @@
 import express from 'express';
 import { getCurrentUser, loginUser, registerUser } from '../controllers/userController.js';
+import { validateToken } from '../middleware/validateTokenHandler.js';
 const router = express.Router();
 
 router.post('/register', registerUser)
 
 router.post('/login', loginUser)
 
-router.get('/current', getCurrentUser)
+router.get('/current', validateToken, getCurrentUser)
 
 
 export default router;
